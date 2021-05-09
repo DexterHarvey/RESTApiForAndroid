@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="RESTApiForAndroid:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>RESTApiForAndroid</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="RESTApiForAndroid-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="RESTApiForAndroid:war exploded" />
+    </root>
+  </artifact>
+</component>
