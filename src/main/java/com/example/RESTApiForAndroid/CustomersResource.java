@@ -8,10 +8,7 @@ import com.google.gson.Gson;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.persistence.*;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.json.JsonValue;
 import java.util.List;
@@ -36,6 +33,33 @@ public class CustomersResource {
         }
         catch (NoResultException ex){
             return "{'invalid' : 'login'}";
+        }
+    }
+
+    @PUT
+    @Path("/update")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public String updateCustomer(String CustJson) {
+
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
+        EntityManager em = factory.createEntityManager();
+
+        Gson gson = new Gson();
+        CustomersEntity cust = gson.fromJson(CustJson, CustomersEntity.class);
+
+        em.getTransaction().begin();
+
+        // inserts entity and returns copy of new entity
+        CustomersEntity result = em.merge(cust);
+
+        em.getTransaction().commit();
+
+        if(result!= null){
+            return gson.toJson(cust);
+        }
+        else{
+            return "{'message': 'Failed to update'}";
         }
     }
 }
