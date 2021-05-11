@@ -6,9 +6,7 @@ import com.google.gson.Gson;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
@@ -28,4 +26,91 @@ public class PackagesResource {
 
         return new Gson().toJson(packages);
     }
+
+    @GET
+    @Path("/getpackage/{ packageId }")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getPackage(@PathParam("packageId") int packageId)
+    {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
+        EntityManager em = factory.createEntityManager();
+
+        PackagesEntity packagesEntity = em.find(PackagesEntity.class, packageId);
+        Gson gson = new Gson();
+        return gson.toJson(packagesEntity);
+    }
+
+    @POST
+    @Path("/postpackage")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public String postPackage(String jsonString)
+    {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
+        EntityManager em = factory.createEntityManager();
+        Gson gson = new Gson();
+        PackagesEntity packagesEntity = gson.fromJson(jsonString, PackagesEntity.class);
+        System.out.println(packagesEntity);
+        em.getTransaction().begin();
+        em.merge(packagesEntity);
+        em.getTransaction().commit();
+//        if (result != null)
+//        {
+            return "{ 'message':'Update Successful!' }";
+//        }
+//        else
+//        {
+//            return "{ 'message':'*Update Failed!!!*' }";
+//        }
+    }
+
+    @PUT
+    @Path("/putpackage")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public String putPackage(String jsonString)
+    {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
+        EntityManager em = factory.createEntityManager();
+        Gson gson = new Gson();
+        PackagesEntity packagesEntity = gson.fromJson(jsonString, PackagesEntity.class);
+        System.out.println(packagesEntity);
+        em.getTransaction().begin();
+        em.persist(packagesEntity);
+        em.getTransaction().commit();
+//        if (result != null)
+//        {
+            return "{ 'message':'Insert Successful' }";
+//        }
+//        else
+//        {
+//            return "{ 'message':'Insert Failed' }";
+//        }
+    }
+
+    @DELETE
+    @Path("/deletepackage/{ packageId }")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String deletePackage(@PathParam("packageId") int packageId)
+    {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
+        EntityManager em = factory.createEntityManager();
+        PackagesEntity packagesEntity = em.find(PackagesEntity.class, packageId);
+        em.getTransaction().begin();
+        em.remove(packagesEntity);
+        System.out.println(packagesEntity);
+        if (em.contains(packagesEntity))
+        {
+            em.getTransaction().rollback();
+            em.close();
+            return "{ 'message':'Delete Failed' }";
+        }
+        else
+        {
+            em.getTransaction().commit();
+            em.close();
+            return "{ 'message':'Delete Successful' }";
+        }
+    }
+
 }
