@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "packages", schema = "travelexperts", catalog = "")
+@Table(name = "packages", schema = "travelexperts")
 public class PackagesEntity {
     private int packageId;
     private String pkgName;
@@ -14,6 +14,7 @@ public class PackagesEntity {
     private String pkgDesc;
     private BigDecimal pkgBasePrice;
     private BigDecimal pkgAgencyCommission;
+    private String RegionId;
 
     @Id
     @Column(name = "PackageId")
@@ -83,6 +84,16 @@ public class PackagesEntity {
 
     public void setPkgAgencyCommission(BigDecimal pkgAgencyCommission) {
         this.pkgAgencyCommission = pkgAgencyCommission;
+    }
+
+    @Basic
+    @Column(name = "RegionId")
+    public String getRegionId() {
+        return RegionId;
+    }
+
+    public void setRegionId(String regionId) {
+        this.RegionId = regionId;
     }
 
     @Override
