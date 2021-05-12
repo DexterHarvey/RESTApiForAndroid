@@ -5,10 +5,7 @@ import model.BookingdetailsEntity;
 import model.CustomersEntity;
 
 import javax.persistence.*;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
@@ -32,6 +29,33 @@ public class BookingDetailsResource {
         }
         catch (NoResultException ex){
             return "{'invalid' : 'login'}";
+        }
+    }
+    @POST
+    @Path("/addnew")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public String addBookingDetail(String BDJson) {
+
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
+        EntityManager em = factory.createEntityManager();
+
+        Gson gson = new Gson();
+        BookingdetailsEntity bDetails = gson.fromJson(BDJson, BookingdetailsEntity.class);
+
+        em.getTransaction().begin();
+
+        // inserts entity and returns copy of new entity
+        BookingdetailsEntity result = em.merge(bDetails);
+
+
+        em.getTransaction().commit();
+
+        if(result!= null){
+            return gson.toJson(bDetails);
+        }
+        else{
+            return "{'message': 'Failed to update'}";
         }
     }
 }

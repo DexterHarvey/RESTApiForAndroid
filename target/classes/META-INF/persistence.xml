@@ -11,6 +11,7 @@
         <class>model.BookingsEntity</class>
         <class>model.CoordinatesEntity</class>
         <class>model.PkgDestinationsEntity</class>
+        <class>model.FeesEntity</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:mariadb://localhost:3306/travelexperts"/>
             <property name="javax.persistence.jdbc.driver" value="org.mariadb.jdbc.Driver"/>
