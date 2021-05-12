@@ -26,6 +26,20 @@ public class PackagesResource {
 
         return new Gson().toJson(packages);
     }
+    @GET
+    @Path("/getallupcoming")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getAllUpcoming() {
+        List<PackagesEntity> packages;
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
+        EntityManager em = factory.createEntityManager();
+        packages = em.createQuery("SELECT p FROM PackagesEntity p WHERE p.pkgStartDate > current_time ").getResultList();
+
+        em.close();
+        factory.close();
+
+        return new Gson().toJson(packages);
+    }
 
     @GET
     @Path("/getpackage/{ packageId }")
