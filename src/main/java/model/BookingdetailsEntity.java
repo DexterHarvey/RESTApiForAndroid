@@ -10,6 +10,10 @@ public class BookingdetailsEntity {
     @OneToOne
     @JoinColumn(name = "BookingId")
     BookingsEntity bookingsEntity;
+    @OneToOne
+    @JoinColumn(name = "FeeId")
+    FeesEntity feesEntity;
+
     private int bookingDetailId;
     private Double itineraryNo;
     private Timestamp tripStart;
