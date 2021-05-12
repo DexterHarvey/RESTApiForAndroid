@@ -18,7 +18,7 @@ public class BookingDetailsResource {
         int custIdInt = Integer.parseInt(custId);
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
         EntityManager em = factory.createEntityManager();
-        TypedQuery<BookingdetailsEntity> query2 = em.createQuery("SELECT DISTINCT bd FROM BookingsEntity b, BookingdetailsEntity bd WHERE b.customerId = :custId", BookingdetailsEntity.class);
+        TypedQuery<BookingdetailsEntity> query2 = em.createQuery("SELECT DISTINCT bd FROM BookingsEntity b, BookingdetailsEntity bd WHERE b.bookingId= bd.bookingId AND b.customerId = :custId", BookingdetailsEntity.class);
         query2.setParameter("custId", custIdInt);
         List<BookingdetailsEntity> details;
         try {
