@@ -62,4 +62,22 @@ public class CustomersResource {
             return "{'message': 'Failed to update'}";
         }
     }
+
+    @POST
+    @Path("/add")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public String postPackage(String jsonString)
+    {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
+        EntityManager em = factory.createEntityManager();
+        Gson gson = new Gson();
+        CustomersEntity customersEntity = gson.fromJson(jsonString, CustomersEntity.class);
+        System.out.println(customersEntity);
+        em.getTransaction().begin();
+        em.merge(customersEntity);
+        em.getTransaction().commit();
+//        if (result != null)
+//        {
+        return "{ 'message':'Update Successful!' }";
 }
