@@ -5,6 +5,8 @@ import model.BookingdetailsEntity;
 import model.BookingsEntity;
 import model.CustomersEntity;
 
+import javax.json.Json;
+import javax.json.JsonObject;
 import javax.persistence.*;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -38,5 +40,15 @@ public class BookingsResource {
         else{
             return "{'message': 'Failed to update'}";
         }
+    }
+    @GET
+    @Path("/highestbookingid")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getHighestBookingId() {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
+        EntityManager em = factory.createEntityManager();
+        Query query = em.createQuery("SELECT b.bookingId FROM BookingsEntity b ORDER BY b.bookingId DESC");
+        List result = query.setMaxResults(1).getResultList();
+        return "{\"highestBookingId\" : " + result.get(0).toString() + "}";
     }
 }

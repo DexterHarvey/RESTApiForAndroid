@@ -14,7 +14,7 @@ public class PackagesEntity {
     private String pkgDesc;
     private BigDecimal pkgBasePrice;
     private BigDecimal pkgAgencyCommission;
-    private String RegionId;
+    private String regionId;
 
     @Id
     @Column(name = "PackageId")
@@ -89,11 +89,11 @@ public class PackagesEntity {
     @Basic
     @Column(name = "RegionId")
     public String getRegionId() {
-        return RegionId;
+        return regionId;
     }
 
     public void setRegionId(String regionId) {
-        this.RegionId = regionId;
+        this.regionId = regionId;
     }
 
     @Override
