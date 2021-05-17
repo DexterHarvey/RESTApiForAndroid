@@ -3,6 +3,10 @@ package model;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
+/**
+ * Booking db entity class by Dexter.
+ */
+
 @Entity
 @Table(name = "fees", schema = "travelexperts", catalog = "")
 public class FeesEntity {

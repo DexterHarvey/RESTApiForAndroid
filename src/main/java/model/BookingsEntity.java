@@ -3,6 +3,10 @@ package model;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
+/**
+ * Booking db entity class by Dexter.
+ */
+
 @Entity
 @Table(name = "bookings", schema = "travelexperts", catalog = "")
 public class BookingsEntity {

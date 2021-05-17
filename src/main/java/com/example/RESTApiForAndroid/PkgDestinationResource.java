@@ -1,7 +1,6 @@
 package com.example.RESTApiForAndroid;
 
 import com.google.gson.Gson;
-import model.CoordinatesEntity;
 import model.PackagesEntity;
 import model.PkgDestinationsEntity;
 
@@ -11,6 +10,11 @@ import javax.persistence.Persistence;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
+
+/**
+ * API calls which interact with the new Destinations table.
+ * Created by Eric.
+ */
 
 @Path("/destinations")
 public class PkgDestinationResource {

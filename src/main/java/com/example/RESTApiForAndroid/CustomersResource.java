@@ -13,6 +13,12 @@ import javax.ws.rs.core.MediaType;
 import javax.json.JsonValue;
 import java.util.List;
 
+/**
+ * API calls which interact with the Customers table.
+ * Created by Dexter and Eric as noted atop method calls.
+ */
+
+//Dexter
 @Path("/customers")
 public class CustomersResource {
     @GET
@@ -36,6 +42,7 @@ public class CustomersResource {
         }
     }
 
+    // Eric
     @PUT
     @Path("/update")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -63,6 +70,7 @@ public class CustomersResource {
         }
     }
 
+    // Eric
     @POST
     @Path("/add")
     @Consumes(MediaType.APPLICATION_JSON)

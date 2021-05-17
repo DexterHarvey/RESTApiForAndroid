@@ -2,6 +2,10 @@ package model;
 
 import javax.persistence.*;
 
+/**
+ * Booking db entity class by Eric.
+ */
+
 @Entity
 @Table(name = "pkg_destinations", schema = "travelexperts")
 public class PkgDestinationsEntity {

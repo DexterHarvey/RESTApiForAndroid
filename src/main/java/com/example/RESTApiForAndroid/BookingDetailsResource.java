@@ -9,6 +9,11 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
+/**
+ * API calls which interact with the BookingDetails table.
+ * Created by Dexter, with some bug fixes by Eric.
+ */
+
 @Path("/bookingdetails")
 public class BookingDetailsResource {
     @GET

@@ -4,6 +4,10 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
+/**
+ * Booking db entity class by Dexter, with some additions by Eric as the entity was expanded.
+ */
+
 @Entity
 @Table(name = "packages", schema = "travelexperts")
 public class PackagesEntity {

@@ -2,6 +2,10 @@ package model;
 
 import javax.persistence.*;
 
+/**
+ * Booking db entity class by Dexter.
+ */
+
 @Entity
 @Table(name = "customers", schema = "travelexperts", catalog = "")
 public class CustomersEntity {

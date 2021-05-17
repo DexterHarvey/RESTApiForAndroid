@@ -10,6 +10,12 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
+/**
+ * API calls which interact with the BookingDetails table.
+ * Created by all 3 members, as noted atop methods..
+ */
+
+// Made by Dexter, bugfixes by Eric
 @Path("/packages")
 public class PackagesResource {
     @GET
@@ -26,6 +32,7 @@ public class PackagesResource {
 
         return new Gson().toJson(packages);
     }
+    // Eric
     @GET
     @Path("/getallupcoming")
     @Produces(MediaType.APPLICATION_JSON)
@@ -41,6 +48,7 @@ public class PackagesResource {
         return new Gson().toJson(packages);
     }
 
+    // Jetlyn
     @GET
     @Path("/getpackage/{ packageId }")
     @Produces(MediaType.APPLICATION_JSON)
@@ -54,6 +62,7 @@ public class PackagesResource {
         return gson.toJson(packagesEntity);
     }
 
+    // Jetlyn
     @POST
     @Path("/postpackage")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -78,6 +87,7 @@ public class PackagesResource {
 //        }
     }
 
+    // Jetlyn
     @PUT
     @Path("/putpackage")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -102,6 +112,7 @@ public class PackagesResource {
 //        }
     }
 
+    // Jetlyn
     @DELETE
     @Path("/deletepackage/{ packageId }")
     @Produces(MediaType.APPLICATION_JSON)

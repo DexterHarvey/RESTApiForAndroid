@@ -4,6 +4,10 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
+/**
+ * BookingDetails db entity class by Dexter.
+ */
+
 @Entity
 @Table(name = "bookingdetails", schema = "travelexperts", catalog = "")
 public class BookingdetailsEntity {

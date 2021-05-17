@@ -12,6 +12,11 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
+/**
+ * API calls which interact with the Booking table.
+ * Created by Dexter.
+ */
+
 @Path("/bookings")
 public class BookingsResource {
     @POST
