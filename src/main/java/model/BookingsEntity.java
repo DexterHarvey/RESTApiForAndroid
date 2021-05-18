@@ -118,4 +118,17 @@ public class BookingsEntity {
         result = 31 * result + (packageId != null ? packageId.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "BookingsEntity{" +
+                "bookingId=" + bookingId +
+                ", bookingDate=" + bookingDate +
+                ", bookingNo='" + bookingNo + '\'' +
+                ", travelerCount=" + travelerCount +
+                ", customerId=" + customerId +
+                ", tripTypeId='" + tripTypeId + '\'' +
+                ", packageId=" + packageId +
+                '}';
+    }
 }
